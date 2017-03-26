@@ -69,23 +69,6 @@
   (let [coordinates (get-in attachment [:payload :coordinates])
         klos (sorted-klos (:features (load-db)) coordinates)]
     (actions/send-directions sender-id coordinates (take 3 klos))))
-    ; (doseq [klo (take 3 klos)]
-    ;   (let [distance (Math/round (* 1000 (haversine (convert-coords coordinates) (coords klo))))]
-    ;     (println distance)
-    ;     (fb/send-message sender-id (fb/text-message (str "There is a toilet in " distance "m air-line distance")))
-    ;     (actions/send-directions sender-id coordinates (fb-coords klo))))))
-
-
-        ;(fb/send-message sender-id (fb/image-message (https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap))))
-      ;&key=AIzaSyBuPxyMXFkbeAJK1lIMhNg05TRcKTunUtc)))
-; {"type": "Feature",
-;   "id":"WCANLAGEOGD.365783",
-;   "geometry": {}
-;     "type":"Point",
-;     "coordinates":[16.36735362828523,48.257776025431895]
-;   ,
-;   "geometry_name":"SHAPE",
-;   "properties": {"OBJECTID":365783,"BEZIRK":19,"STRASSE":"Nußdorfer Markt/Sickenbergg.","ONR":null,"TELEFON":"+43 (1) 546 48","OEFFNUNGSZEIT":"Mo-So: 0-24 Uhr","INFORMATION":"http://www.wien.gv.at/umwelt/ma48/sauberestadt/wc/index.html","ABTEILUNG":"M48","KATEGORIE":"WC-Anlage ohne Wartepersonal","SE_ANNO_CAD_DATA":null}}
 
 (defn on-attachments [payload]
   (println "on-attachment payload:")

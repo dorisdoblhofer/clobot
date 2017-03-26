@@ -2,16 +2,7 @@
   (:gen-class)
   (:require [facebook-example.facebook :as fb]
             [haversine.core :refer [haversine]]))
-;(defn greet [user-id]
-;  (println "Greeting: ")
-;  (println user-id)
-;  (fb/send-message user-id (fb/quick-replies-message "Send me your location please" [{"content_type" "location"}])))
 
-;(defn create-element [element]
-    ;(println "element: ")
-    ;{ :title (element :title)
-    ;  :image-url (element :image)
-    ;  :default_action (())))
 (defn convert-coords [coords]
   {:latitude (:lat coords) :longitude (:long coords)})
 
@@ -33,10 +24,4 @@
                        :url (str "https://google.com/maps/dir/" (:lat coordinates) "," (:long coordinates) "/" (:lat target) "," (:long target))}}))
 
 (defn send-directions [user-id coordinates targets]
-  (println "blubadub")
-  ; (println targets)
   (fb/send-message user-id (fb/generic-message (map (partial target->carouselelement coordinates) targets))))
-
-  ;(fb/send-message user-id (fb/image-message (str "https://maps.googleapis.com/maps/api/staticmap?" "size=500x400" "&markers=color:green%7Clabel:A%7C" (:lat coordinates) "," (:long coordinates) "&markers=color:red%7Clabel:B%7C" (:lat target) "," (:long target) "&key=AIzaSyBuPxyMXFkbeAJK1lIMhNg05TRcKTunUtc")))
-  ;(fb/send-message user-id (fb/text-message "See directions:"))
-  ;(fb/send-message user-id (fb/text-message (str "https://google.com/maps/dir/" (:lat coordinates) "," (:long coordinates) "/" (:lat target) "," (:long target)))))
