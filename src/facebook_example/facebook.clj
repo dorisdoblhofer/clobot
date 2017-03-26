@@ -55,5 +55,11 @@
   {:attachment {:type "image"
                 :payload {:url image-url}}})
 
+(defn generic-message [elements]
+  {:attachment {:type "template"
+                :payload {:template_type "generic"
+                          :elements elements}}})
+
+
 (defn text-message [message-text]
   {:text message-text})
